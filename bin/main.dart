@@ -21,5 +21,16 @@
 /// Output: [["John", 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com'],
 /// ["John", "johnnybravo@mail.com"], ["Mary", "mary@mail.com"]]
 
+List<List<String>> mergeAccounts(List<List<String>> accounts){
+  List newList = [];
+  for(int i = 0; i < accounts.length; i++){
+    for (int j = 1; j< accounts[i].length; j++){
+      print(j);
+    }
+  }
+  Map x = {'a' : 12, 'b' : 16, 'c' : 6 };
+  x.;
+}
+
 main() {
 }
