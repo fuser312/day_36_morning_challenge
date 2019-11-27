@@ -22,15 +22,57 @@
 /// ["John", "johnnybravo@mail.com"], ["Mary", "mary@mail.com"]]
 
 List<List<String>> mergeAccounts(List<List<String>> accounts){
-  List newList = [];
-  for(int i = 0; i < accounts.length; i++){
-    for (int j = 1; j< accounts[i].length; j++){
-      print(j);
+ for (int i = 0; i < accounts.length; i++) {
+    for (int j = 0; j < accounts.length; j++) {
+      if (i != j) {
+        if (commonMails(accounts[i], accounts[j])) {
+          accounts[i] = userWithCommonMails(accounts[i], accounts[j]);
+          accounts.removeAt(j);
+          j=0;
+        }
+      }
     }
   }
-  Map x = {'a' : 12, 'b' : 16, 'c' : 6 };
-  x.;
+  return accounts;
 }
 
+bool commonMails(List<String> firstAccount, List<String> secondAccount) {
+  for (int i = 1; i < firstAccount.length; i++) {
+    for (int j = 1; j < secondAccount.length; j++) {
+      if (firstAccount[i] == secondAccount[j]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+List userWithCommonMails(List<String> firstAccount, List<String> secondAccount) {
+  List<String> commonMails = [];
+  firstAccount.forEach((mails) {
+    if (firstAccount.indexOf(mails) != 0 && !(commonMails.contains(mails))) {
+      commonMails.add(mails);
+    }
+  });
+  secondAccount.forEach((mails) {
+    if (secondAccount.indexOf(mails) != 0 && !(commonMails.contains(mails))) {
+      commonMails.add(mails);
+    }
+  });
+  commonMails.sort();
+  commonMails.insert(0, firstAccount[0]);
+  return commonMails;
+}
+
+        
+
+
 main() {
+
+  print(mergeAccounts([
+    ["John", "johnsmith@mail.com", "john00@mail.com"],
+    ["John", "johnnybravo@mail.com"],
+    ["John", "johnsmith@mail.com", "john_newyork@mail.com"],
+    ["Mary", "mary@mail.com"]
+  ]));
 }
